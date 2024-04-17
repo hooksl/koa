@@ -15,3 +15,5 @@ package.json中  dev替换成别的也可以
 
 
 目录结构优化
+
+将用户处理抽离到controller
