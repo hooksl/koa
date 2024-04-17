@@ -3,7 +3,7 @@ const { register } = require('../controller/user')
 const router = new Router({ prefix: '/users' })
 
 // 导// 注册接口
-router.get('/register', register)
+router.post('/register', register)
 
 // 导出出
 module.exports = router
