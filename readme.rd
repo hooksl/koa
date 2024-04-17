@@ -9,3 +9,7 @@ package.json中  dev替换成别的也可以
     "dev": "nodemon ./src/main.js"
   },
 之后在控制台执行命令 npm run dev 就可以启动了。并且当我们改动代码，他也会自动的重启。
+
+
+读取配置文件
+
