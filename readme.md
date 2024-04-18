@@ -21,4 +21,4 @@ package.json中  dev替换成别的也可以
 安装koa-body包
 
 操作数据库处理
-curl -X POST -d '{ "id":"3", "provinceId":"3"}' -H "Content-Type: application/json" http://127.0.0.1:8001/users/register 
+curl -X POST -d '{ "id":"3", "provinceId":"3"}' -H "Content-Type: application/json" http://127.0.0.1:8001/users/register
