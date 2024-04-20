@@ -7,5 +7,7 @@ const app = new Koa()
 app.use(koaBody())
 // 必须是一个函数
 app.use(userRouter.routes())
-
+app.on('error', (err, ctx) => {
+    console.log(err)
+})
 module.exports = app

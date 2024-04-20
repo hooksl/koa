@@ -1,5 +1,5 @@
 //注意 createUser是异步函数
-const { createUser, getUserInfo } = require('../service/user')
+const { createUser } = require('../service/user')
 class UserController {
     async register(ctx, next) {
         // 1.获取数据
