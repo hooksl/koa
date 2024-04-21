@@ -45,4 +45,5 @@ curl -X POST -d '{ "user_name":"nihao", "password":"xxxx"}' -H "Content-Type: ap
 npm i bycrptjs
 
     - 密码加密
+    - 验证密码
     

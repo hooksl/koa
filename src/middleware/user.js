@@ -1,4 +1,4 @@
-const { userFormateError, userAlreadyExisted } = require('../constant/err_type')
+const { userFormateError, userAlreadyExisted, userUnExist, userLoginError, invalidPassword } = require('../constant/err_type')
 
 const userValidator = async (ctx, next) => {
     const { user_name, password } = ctx.request.body
@@ -37,9 +37,33 @@ const cryptPassword = async (ctx, next) => {
     ctx.request.body.password = hash
     await next()
 }
+const verifyLogin = async (ctx, next) => {
+    // 1.判断用户是否存在 不存在报错
+    const { user_name, password } = ctx.request.body
+    try {
+        const res = await getUserInfo({ user_name })
+        if (!res) {
+            console.error('用户不存在', { user_name })
+            ctx.app.emit('error', userUnExist, ctx)
+            return
+        }
+        // 2.密码是否匹配 不匹配报错
+        // compareSync 返回值是 true false
+        if (!bcrypt.compareSync(password, res.password)) {
+            ctx.app.emit('error', invalidPassword, ctx)
+            return
+        }
+    } catch (err) {
+        console.error(err)
+        return ctx.app.emit('error', userLoginError)
+    }
+
+    await next()
+}
 
 module.exports = {
     userValidator,
     verifyUser,
-    cryptPassword
+    cryptPassword,
+    verifyLogin
 }
