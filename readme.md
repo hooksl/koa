@@ -47,3 +47,26 @@ npm i bycrptjs
     - 密码加密
     - 验证密码
     
+中间件koa-jwt(包含了jsonwebtoken,用来生成token)
+```sh
+npm install koa-jwt
+```
+  jwt全称 JSON Web Token,由于三部分构成Header、Payload、Signature
+
+```js
+// 生成token
+jwt = require("jsonwebtoken");
+const token = jwt.sign(
+        {
+          name: result.name
+        },
+        "Gopal_token", // secret
+        { expiresIn: '1h' } // 有效期1小时 
+      );
+// 验证token
+const koajwt = require('koa-jwt');
+koajwt({secret: 'Gopal_token'}).unless({ 
+  path: [/\/api\/register/, /\/api\/login/] // 配置白名单
+})
+```
+

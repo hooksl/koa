@@ -1,5 +1,6 @@
 //注意 createUser是异步函数
 const { createUser } = require('../service/user')
+const jwt = require("jsonwebtoken");
 class UserController {
     async register(ctx, next) {
         // 1.获取数据
@@ -18,7 +19,21 @@ class UserController {
     }
     async login(ctx, next) {
         const { user_name } = ctx.request.body
-        ctx.body = `欢迎回来${user_name}`
+        // ctx.body = `欢迎回来${user_name}`
+        const token = jwt.sign(
+            {
+                name: user_name
+            },
+            "Gopal_token", // secret
+            { expiresIn: '1h' } // 有效期1小时 
+        )
+        ctx.body = {
+            code: 0,
+            messgae: '登陆成功',
+            user_name: user_name,
+            token: token
+        }
+
     }
 }
 
