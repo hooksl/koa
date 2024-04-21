@@ -40,3 +40,9 @@ curl -X POST -d '{ "user_name":"nihao", "password":"xxxx"}' -H "Content-Type: ap
 常量中间件
 
 错误监听
+
+密码加密
+npm i bycrptjs
+
+    - 密码加密
+    

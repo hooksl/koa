@@ -24,7 +24,22 @@ const verifyUser = async (ctx, next) => {
     await next()
 }
 
+const bcrypt = require('bcryptjs');
+// var salt = bcrypt.genSaltSync(10);
+// var hash = bcrypt.hashSync("B4c0//", salt)
+
+const cryptPassword = async (ctx, next) => {
+    // 解构出密码
+    const { password } = ctx.request.body
+    const salt = bcrypt.genSaltSync(10)
+    // 保存的是密文
+    const hash = bcrypt.hashSync(password, salt)
+    ctx.request.body.password = hash
+    await next()
+}
+
 module.exports = {
     userValidator,
-    verifyUser
+    verifyUser,
+    cryptPassword
 }
