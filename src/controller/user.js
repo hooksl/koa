@@ -1,4 +1,5 @@
 //注意 createUser是异步函数
+const { SECRET } = require('../config/config')
 const { createUser } = require('../service/user')
 const jwt = require("jsonwebtoken");
 class UserController {
@@ -24,7 +25,7 @@ class UserController {
             {
                 name: user_name
             },
-            "Gopal_token", // secret
+            SECRET, // secret
             { expiresIn: '1h' } // 有效期1小时 
         )
         ctx.body = {

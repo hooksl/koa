@@ -2,6 +2,7 @@ const Koa = require('koa')
 const userRouter = require('../router/user')
 const { koaBody } = require('koa-body')
 const koajwt = require('koa-jwt');
+const { SECRET } = require('../config/config')
 const errHandler = require('./errHandler')
 const app = new Koa()
 
@@ -9,7 +10,7 @@ const app = new Koa()
 app.use(koaBody())
 
 app.use(koajwt({
-    secret: 'Gopal_token'
+    secret: SECRET,
 }).unless({ // 配置白名单
     path: [/\/users\/register/, /\/users\/login/]
 }))

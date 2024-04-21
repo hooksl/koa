@@ -66,7 +66,7 @@ const token = jwt.sign(
 // 验证token
 const koajwt = require('koa-jwt');
 koajwt({secret: 'Gopal_token'}).unless({ 
-  path: [/\/api\/register/, /\/api\/login/] // 配置白名单
+  path: [/\/users\/register/, /\/users\/login/] // 配置白名单
 })
 ```
-
+密钥加入环境变量
