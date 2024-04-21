@@ -9,5 +9,13 @@ router.post('/register', userValidator, verifyUser, cryptPassword, register)
 
 // 登录接口
 router.post('/login', userValidator, verifyLogin, login)
+
+router.post('/verifyToken', async (ctx, next) => {
+    ctx.body = {
+        code: 0,
+        messgae: '验证成功',
+    }
+    await next()
+})
 // 导出
 module.exports = router
